@@ -400,15 +400,222 @@ footer nav a {
 
 /* Responsive */
 
-@media (max-width: 768px) {
-  .hero, .stats, .process, .vacancies, .split, .contacts, footer {
-    padding-left: 24px;
-    padding-right: 24px;
+/* ============================================
+   Адаптация под планшеты и телефоны
+   ============================================ */
+
+/* Планшеты: 1024px и меньше */
+@media (max-width: 1024px) {
+  .hero {
+    padding: 64px 40px 56px;
   }
   .hero h1 {
-    font-size: 36px;
+    font-size: 42px;
+  }
+  .stats,
+  .process,
+  .vacancies,
+  .split,
+  .contacts {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  footer {
+    padding-left: 40px;
+    padding-right: 40px;
   }
   nav.main-nav {
+    gap: 24px;
+  }
+}
+
+/* Телефоны: 768px и меньше */
+@media (max-width: 768px) {
+
+  /* --- Шапка --- */
+  .header-inner {
+    padding-top: 14px;
+    padding-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  nav.main-nav {
+    order: 3;
+    width: 100%;
+    gap: 16px 20px;
+    font-size: 14px;
+    justify-content: center;
+    padding-top: 6px;
+  }
+
+  .logo span {
+    font-size: 18px;
+  }
+
+  header .btn-primary {
+    padding: 10px 18px;
+    font-size: 13px;
+  }
+
+  /* --- Hero --- */
+  .hero {
+    padding: 48px 20px 40px;
+  }
+  .hero h1 {
+    font-size: 30px;
+    line-height: 1.2;
+    margin-top: 16px;
+  }
+  .hero p {
+    font-size: 15px;
+    margin-top: 14px;
+  }
+  .hero-actions {
+    margin-top: 24px;
+    gap: 12px;
+  }
+  .hero-actions .btn {
+    flex: 1;
+    text-align: center;
+    padding: 13px 20px;
+    font-size: 14px;
+  }
+
+  /* --- Stats --- */
+  .stats {
+    padding: 0 20px 48px;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .stat {
+    min-width: 100%;
+    padding: 22px 20px;
+  }
+  .stat-number {
+    font-size: 28px;
+  }
+
+  /* --- Process --- */
+  .process {
+    padding: 48px 20px;
+  }
+  .process h2 {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+  .process-steps {
+    flex-direction: column;
     gap: 20px;
+  }
+  .step {
+    min-width: 100%;
+  }
+  .step-number {
+    font-size: 24px;
+  }
+
+  /* --- Vacancies --- */
+  .vacancies {
+    padding: 48px 20px;
+  }
+  .vacancies h2 {
+    font-size: 24px;
+  }
+  .vacancies-subtitle {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+  .vacancy-card {
+    padding: 18px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .vacancy-card .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* --- Split (работодателям / соискателям) --- */
+  .split {
+    padding: 48px 20px;
+  }
+  .split-inner {
+    flex-direction: column;
+    gap: 36px;
+  }
+  .split-col {
+    min-width: 100%;
+  }
+  .split-col h2 {
+    font-size: 22px;
+  }
+  .split-col ul {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .split-col .btn {
+    margin-top: 12px;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* --- Contacts --- */
+  .contacts {
+    padding: 48px 20px;
+  }
+  .contacts h2 {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+  .contacts-inner {
+    flex-direction: column;
+    gap: 28px;
+  }
+  .contact-form,
+  .contact-info {
+    min-width: 100%;
+  }
+  .contact-form button {
+    width: 100% !important;
+  }
+  .contact-info .card {
+    padding: 22px;
+  }
+
+  /* --- Footer --- */
+  footer {
+    padding: 22px 20px;
+    flex-direction: column;
+    text-align: center;
+    gap: 14px;
+  }
+  footer nav {
+    gap: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* Очень узкие экраны: 380px и меньше (iPhone SE и подобные) */
+@media (max-width: 380px) {
+  .hero h1 {
+    font-size: 26px;
+  }
+  nav.main-nav {
+    gap: 12px 14px;
+    font-size: 13px;
+  }
+  .header-inner {
+    gap: 8px;
+  }
+  header .btn-primary {
+    padding: 9px 14px;
+    font-size: 12px;
+  }
+  .btn {
+    padding: 12px 22px;
+    font-size: 14px;
   }
 }
