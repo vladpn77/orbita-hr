@@ -85,46 +85,84 @@
   </section>
 
   <!-- VACANCIES -->
-  <section id="vacancies" class="vacancies container">
-    <h2>Актуальные вакансии</h2>
-    <p class="vacancies-subtitle">Небольшая часть открытых позиций у наших партнёров</p>
-    <div class="vacancy-list">
+ <section id="vacancies" class="vacancies container">
+  <h2>Актуальные вакансии</h2>
+  <p class="vacancies-subtitle">Небольшая часть открытых позиций у наших партнёров</p>
 
-      <div class="vacancy-card card">
-        <div>
-          <h3>Менеджер по продажам B2B</h3>
-          <p>Производственная компания · Москва · от 90 000 ₽</p>
-        </div>
-        <a href="#contacts" class="btn btn-outline btn-sm">Откликнуться</a>
+  <!-- Кнопки фильтра -->
+  <div class="filter-bar">
+    <button class="filter-btn is-active" data-filter="all">Все</button>
+    <button class="filter-btn" data-filter="sales">Продажи</button>
+    <button class="filter-btn" data-filter="it">IT</button>
+    <button class="filter-btn" data-filter="finance">Бухгалтерия</button>
+    <button class="filter-btn" data-filter="hr">HR</button>
+    <button class="filter-btn" data-filter="logistics">Логистика</button>
+  </div>
+
+  <div class="vacancy-list">
+
+    <div class="vacancy-card card" data-category="sales">
+      <div>
+        <h3>Менеджер по продажам B2B</h3>
+        <p>Производственная компания · Москва · от 90 000 ₽</p>
       </div>
-
-      <div class="vacancy-card card">
-        <div>
-          <h3>Бухгалтер на участок</h3>
-          <p>Розничная сеть · Санкт-Петербург · от 75 000 ₽</p>
-        </div>
-        <a href="#contacts" class="btn btn-outline btn-sm">Откликнуться</a>
-      </div>
-
-      <div class="vacancy-card card">
-        <div>
-          <h3>Frontend-разработчик</h3>
-          <p>IT-компания · удалённо · от 150 000 ₽</p>
-        </div>
-        <a href="#contacts" class="btn btn-outline btn-sm">Откликнуться</a>
-      </div>
-
-      <div class="vacancy-card card">
-        <div>
-          <h3>HR-специалист</h3>
-          <p>Логистическая компания · Казань · от 65 000 ₽</p>
-        </div>
-        <a href="#contacts" class="btn btn-outline btn-sm">Откликнуться</a>
-      </div>
-
+      <a href="#contacts" class="btn btn-outline btn-sm">Откликнуться</a>
     </div>
-  </section>
 
+    <div class="vacancy-card card" data-category="finance">
+      <div>
+        <h3>Бухгалтер на участок</h3>
+        <p>Розничная сеть · Санкт-Петербург · от 75 000 ₽</p>
+      </div>
+      <a href="#contacts" class="btn btn-outline btn-sm">Откликнуться</a>
+    </div>
+
+    <div class="vacancy-card card" data-category="it">
+      <div>
+        <h3>Frontend-разработчик</h3>
+        <p>IT-компания · удалённо · от 150 000 ₽</p>
+      </div>
+      <a href="#contacts" class="btn btn-outline btn-sm">Откликнуться</a>
+    </div>
+
+    <div class="vacancy-card card" data-category="hr">
+      <div>
+        <h3>HR-специалист</h3>
+        <p>Логистическая компания · Казань · от 65 000 ₽</p>
+      </div>
+      <a href="#contacts" class="btn btn-outline btn-sm">Откликнуться</a>
+    </div>
+
+    <!-- Пример новых карточек (можешь оставить или удалить) -->
+    <div class="vacancy-card card" data-category="logistics">
+      <div>
+        <h3>Логист-оператор</h3>
+        <p>Транспортная компания · Москва · от 70 000 ₽</p>
+      </div>
+      <a href="#contacts" class="btn btn-outline btn-sm">Откликнуться</a>
+    </div>
+
+    <div class="vacancy-card card" data-category="it">
+      <div>
+        <h3>Backend-разработчик (Python)</h3>
+        <p>IT-стартап · удалённо · от 180 000 ₽</p>
+      </div>
+      <a href="#contacts" class="btn btn-outline btn-sm">Откликнуться</a>
+    </div>
+
+    <div class="vacancy-card card" data-category="sales">
+      <div>
+        <h3>Руководитель отдела продаж</h3>
+        <p>FMCG-компания · Москва · от 140 000 ₽</p>
+      </div>
+      <a href="#contacts" class="btn btn-outline btn-sm">Откликнуться</a>
+    </div>
+
+  </div>
+
+  <!-- Сообщение, если ничего не найдено -->
+  <p class="vacancies-empty" id="vacanciesEmpty" hidden>По этой категории пока нет вакансий.</p>
+</section>
   <!-- EMPLOYERS / CANDIDATES -->
   <section id="employers" class="split">
     <div class="container split-inner">
@@ -191,6 +229,34 @@
       <a href="#contacts">Контакты</a>
     </nav>
   </footer>
+<script>
+  (function () {
+    const buttons = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.vacancy-card');
+    const empty = document.getElementById('vacanciesEmpty');
 
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const filter = btn.dataset.filter;
+
+        // Подсветка активной кнопки
+        buttons.forEach(function (b) { b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+
+        let visible = 0;
+
+        cards.forEach(function (card) {
+          const cat = card.dataset.category;
+          const show = (filter === 'all' || cat === filter);
+          card.hidden = !show;
+          if (show) visible++;
+        });
+
+        // Если ничего не найдено — показать сообщение
+        if (empty) empty.hidden = visible !== 0;
+      });
+    });
+  })();
+</script>
 </body>
 </html>
