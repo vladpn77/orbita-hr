@@ -99,13 +99,23 @@ a:hover {
 /* Header */
 
 header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid #E7E1D3;
+  background: rgba(247, 244, 238, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 22px 64px;
-  border-bottom: 1px solid #E7E1D3;
-  flex-wrap: wrap;
   gap: 16px;
+  flex-wrap: wrap;
+  padding-top: 18px;
+  padding-bottom: 18px;
 }
 
 .logo {
@@ -391,11 +401,14 @@ footer nav a {
 /* Responsive */
 
 @media (max-width: 768px) {
-  header, .hero, .stats, .process, .vacancies, .split, .contacts, footer {
+  .hero, .stats, .process, .vacancies, .split, .contacts, footer {
     padding-left: 24px;
     padding-right: 24px;
   }
   .hero h1 {
     font-size: 36px;
+  }
+  nav.main-nav {
+    gap: 20px;
   }
 }
